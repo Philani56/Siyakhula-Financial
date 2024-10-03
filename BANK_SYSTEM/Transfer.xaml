@@ -1,0 +1,110 @@
+﻿<Window x:Class="BANK_SYSTEM.Transfer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bank System" Height="800" Width="800"
+        WindowStyle="None" 
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <!-- Resources Section to Define Gradient Brush -->
+    <Window.Resources>
+        <!-- Spotify Gradient Brush -->
+        <LinearGradientBrush x:Key="SpotifyGradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#191414" Offset="0.0"/>
+            <GradientStop Color="#004d00" Offset="1.0"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+
+    <!-- Main Background Grid -->
+    <Grid>
+        <!-- Dark Gradient Background with Rounded Corners and Drop Shadow -->
+        <Border Background="{StaticResource SpotifyGradientBrush}" CornerRadius="15" BorderThickness="0" Margin="10">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="Black" Opacity="0.5"/>
+            </Border.Effect>
+
+            <!-- StackPanel for content -->
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="600" Margin="0,30,0,0">
+                <!-- Logo -->
+                <Image Source="Images/transfer.png" Width="100" Height="100" HorizontalAlignment="Center"/>
+
+                <!-- Title -->
+                <TextBlock Text="Transfer Money" FontSize="24" FontWeight="Bold" Margin="0,20,0,20" HorizontalAlignment="Center" Foreground="White" FontFamily="Roboto"/>
+
+                <!-- Grid for Inputs -->
+                <Grid Margin="0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Account Type Selection -->
+                    <TextBlock Text="Select Your Name:" FontSize="16" Margin="0,10,0,5" Foreground="White" FontFamily="Roboto" Grid.Row="0" Grid.Column="0"/>
+                    <ComboBox x:Name="RegisteredNamesComboBox" Width="180" Height="30" Margin="0,0,0,20" 
+          Grid.Row="0" Grid.Column="1" 
+          SelectionChanged="RegisteredNamesComboBox_SelectionChanged">
+                    </ComboBox>
+
+
+                    <!-- Account Number Label and Input -->
+                    <TextBlock Text="Account Number:" FontSize="16" Margin="0,20,0,5" Foreground="White" FontFamily="Roboto" Grid.Row="1" Grid.Column="0"/>
+                    <Border Width="250" Height="40" CornerRadius="5" BorderBrush="#1DB954" BorderThickness="2" Background="#E0E0E0" Grid.Row="1" Grid.Column="1">
+                        <TextBox x:Name="AccountNumberTextBox" FontSize="14" Padding="10" Background="Transparent" Foreground="Black" BorderThickness="0" VerticalContentAlignment="Center"/>
+                    </Border>
+
+                    <!-- Recipient's Name Input -->
+                    <TextBlock Text="Recipient's Name:" FontSize="16" Margin="0,20,0,5" Foreground="White" FontFamily="Roboto" Grid.Row="2" Grid.Column="0"/>
+                    <Border Width="250" Height="40" CornerRadius="5" BorderBrush="#1DB954" BorderThickness="2" Background="#E0E0E0" Grid.Row="2" Grid.Column="1">
+                        <TextBox x:Name="RecipientNameTextBox" FontSize="14" Padding="10" Background="Transparent" Foreground="Black" BorderThickness="0" VerticalContentAlignment="Center"/>
+                    </Border>
+
+                    <!-- Bank Name ComboBox -->
+                    <TextBlock Text="Select Recipient's Bank:" FontSize="16" Margin="0,20,0,5" Foreground="White" FontFamily="Roboto" Grid.Row="3" Grid.Column="0"/>
+                    <ComboBox x:Name="BankSelectionComboBox" Width="250" Height="40" Background="#E0E0E0" Margin="0,0,0,20" Grid.Row="3" Grid.Column="1">
+                        <ComboBoxItem Content="Standard Bank"/>
+                        <ComboBoxItem Content="FNB"/>
+                        <ComboBoxItem Content="Nedbank"/>
+                        <ComboBoxItem Content="ABSA"/>
+                        <ComboBoxItem Content="Capitec"/>
+                    </ComboBox>
+
+                    <!-- Recipient's Account Number Input -->
+                    <TextBlock Text="Recipient's Account Number:" FontSize="16" Margin="0,20,0,5" Foreground="White" FontFamily="Roboto" Grid.Row="4" Grid.Column="0"/>
+                    <Border Width="250" Height="40" CornerRadius="5" BorderBrush="#1DB954" BorderThickness="2" Background="#E0E0E0" Grid.Row="4" Grid.Column="1">
+                        <TextBox x:Name="RecipientAccountNumberTextBox" FontSize="14" Padding="10" Background="Transparent" Foreground="Black" BorderThickness="0" VerticalContentAlignment="Center"/>
+                    </Border>
+                </Grid>
+
+                <!-- Transfer Amount Label and Input -->
+                <TextBlock Text="Enter Transfer Amount:" FontSize="16" Margin="0,20,0,5" HorizontalAlignment="Center" Foreground="White" FontFamily="Roboto"/>
+                <Border Width="300" Height="40" CornerRadius="5" BorderBrush="#1DB954" BorderThickness="2" Background="#E0E0E0">
+                    <TextBox x:Name="TransferAmountTextBox" FontSize="14" Padding="10" Background="Transparent" Foreground="Black" BorderThickness="0" VerticalContentAlignment="Center"/>
+                </Border>
+
+                <!-- Submit and Cancel Buttons with Proper Spacing -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <Button Content="Submit" Width="120" Height="40" Background="#1DB954" Foreground="White" FontWeight="Bold" Margin="0,0,10,0" Click="SubmitButton_Click"/>
+                    <Button Content="Cancel" Width="120" Height="40" Background="#FF0000" Foreground="White" FontWeight="Bold" Click="Cancel_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Custom Title Bar with Minimize, Maximize, Close Buttons on Right -->
+        <DockPanel VerticalAlignment="Top" HorizontalAlignment="Right" Height="40">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Button Width="30" Height="30" Background="Transparent" Content="−" Foreground="White" FontSize="14" Click="MinimizeButton_Click" />
+                <Button Width="30" Height="30" Background="Transparent" Content="□" Foreground="White" FontSize="14" Click="MaximizeButton_Click" />
+                <Button Width="30" Height="30" Background="Transparent" Content="✕" Foreground="White" FontSize="14" Click="CloseButton_Click" />
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

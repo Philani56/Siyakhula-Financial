@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="BANK_SYSTEM.CustomAlertDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="400" Width="400">
+    <Border x:Name="DialogBorder" CornerRadius="10" Padding="20" Background="Transparent">
+        <!-- Changed orientation to Vertical to place icon above text -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- Centered Icon -->
+            <Image x:Name="AlertIcon" Width="60" Height="60" Margin="0,0,0,20" HorizontalAlignment="Center" />
+
+            <!-- Success message text below icon -->
+            <TextBlock x:Name="MessageTextBlock" FontSize="16" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" Margin="0,0,0,20"/>
+
+            <!-- Button aligned at the bottom with spacing -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="OK" Width="75" Height="30" Margin="5" Click="OKButton_Click" Background="#1DB954" Foreground="White" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

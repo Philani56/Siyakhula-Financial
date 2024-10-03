@@ -1,0 +1,117 @@
+﻿<Window x:Class="BANK_SYSTEM.Display"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Display" Height="450" Width="800"
+        WindowStyle="None" 
+        ResizeMode="CanResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <Window.Resources>
+        <LinearGradientBrush x:Key="SpotifyGradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#191414" Offset="0.0"/>
+            <GradientStop Color="#1DB954" Offset="1.0"/>
+        </LinearGradientBrush>
+
+        <Style TargetType="Border">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="5" Color="Black" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#1DB954"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="BorderBrush" Value="#1DB954"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+
+        <!-- Button Styles for Max, Min, Close -->
+        <Style x:Key="WindowButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="40" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource SpotifyGradientBrush}">
+
+        <!-- Top Title Bar with Min/Max/Close Buttons -->
+        <Border Background="#1DB954" HorizontalAlignment="Stretch" Height="40" VerticalAlignment="Top">
+            <DockPanel LastChildFill="True">
+                <TextBlock Text="Bank Details" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White" FontSize="16" FontWeight="Bold"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource WindowButtonStyle}" Content="-" Click="Minimize_Click"/>
+                    <Button Style="{StaticResource WindowButtonStyle}" Content="O" Click="Maximize_Click"/>
+                    <Button Style="{StaticResource WindowButtonStyle}" Content="X" Click="Close_Click"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Border CornerRadius="15" Margin="20,60,20,20" Padding="20">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#004d00" Offset="0.0"/>
+                    <GradientStop Color="black" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <StackPanel>
+                <TextBlock Text="Select Your Name:" FontSize="16" Margin="0,10,0,5" HorizontalAlignment="Center" Foreground="white" FontFamily="Roboto"/>
+                <ComboBox x:Name="RegisteredNamesComboBox" Width="300" Height="30" Margin="0,0,0,20" SelectionChanged="RegisteredNamesComboBox_SelectionChanged"/>
+
+                <TextBlock Text="Account Details" FontSize="20" FontWeight="Bold" Margin="0,10,0,10" HorizontalAlignment="Left" Foreground="white"/>
+
+                <ListView x:Name="BankDetailsListView" ItemsSource="{Binding}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Field" Width="120" DisplayMemberBinding="{Binding Field}" />
+                            <GridViewColumn Header="Value" Width="200" DisplayMemberBinding="{Binding Value}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,10">
+                    <Button Width="120" Margin="5" Click="DownloadPDF_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/excel1.png" Width="16" Height="16" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <TextBlock Text="PDF" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Width="120" Margin="5" Click="Back_Click" Background="#C72D29">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/back.png" Width="16" Height="16" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <TextBlock Text="Back" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                
+                
+
+                <Border CornerRadius="10" Background="Transparent" Margin="5">
+                    
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
